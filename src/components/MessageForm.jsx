@@ -43,7 +43,7 @@ const MessageForm = (props) => {
         </span>
       </label>
 
-      <input type="file" multiple={false} id='upload-button' style={{display: none}} onChange={handleUpload}/>
+      <input type="file" multiple={false} id='upload-button' style={{display: "none"}} onChange={handleUpload}/>
       <button type="submit" className="send-button">
         <SendOutlined className='send-icon' />
       </button>
