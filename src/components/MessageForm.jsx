@@ -5,10 +5,10 @@ import { sendMessage, isTyping } from "react-chat-engine";
 const MessageForm = (props) => {
 
   const [value, setValue] = useState('');
-  const { chatIde, creds } = props;
+  const { chatId, creds } = props;
   const handleChange = (e) => {
     setValue(e.target.value);
-    isTyping(props, chatIde)
+    isTyping(props, chatId)
   }
 
   const handleSubmit = (s) => {
@@ -16,13 +16,13 @@ const MessageForm = (props) => {
     const text = value.trim();
 
     if (text.length > 0){
-      sendMessage(creds, chatIde, { text })
+      sendMessage(creds, chatId, { text })
     }
     setValue('');
   }
 
   const handleUpload = (u) => {
-    sendMessage(creds, chatIde, {files: u.target.files, text:' '})
+    sendMessage(creds, chatId, {files: u.target.files, text:''})
   }
 
   return (
@@ -43,7 +43,12 @@ const MessageForm = (props) => {
         </span>
       </label>
 
-      <input type="file" multiple={false} id='upload-button' style={{display: "none"}} onChange={handleUpload}/>
+      <input 
+        type="file" 
+        multiple={false} 
+        id='upload-button' 
+        style={{display: "none"}} 
+        onChange={handleUpload.bind(this)}/>
       <button type="submit" className="send-button">
         <SendOutlined className='send-icon' />
       </button>
